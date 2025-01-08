@@ -1,0 +1,24 @@
+<article class="form-container">
+    <button mat-dialog-close class="btn_close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
+            <path fill="none" stroke="#ffffff" stroke-dasharray="12" stroke-dashoffset="12" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2" d="M12 12l7 7M12 12l-7 -7M12 12l-7 7M12 12l7 -7">
+                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="12;0" />
+            </path>
+        </svg>
+    </button>
+    <h1>Create a story</h1>
+    <form [formGroup]="storyForm" (ngSubmit)="submitForm()">
+        <input formControlName="admin_id" type="number" id="admin_id" placeholder="ADMIN USER">
+        <label for="name">Story Name</label>
+        <input formControlName="name" type="text" id="name" placeholder="The cat and the musician" autocomplete="off">
+        <label for="description">Story Description</label>
+        <textarea formControlName="description" id="description" placeholder="The cat is in the bag"></textarea>
+        <label for="content">Story First Paragraph (Optional)</label>
+        <textarea formControlName="content" id="content" placeholder="Once upon a time..."></textarea>
+        <label for="image_url">Add an image or generate</label>
+        <input  formControlName="image_url" (change)="onFileSelected($event)" type="file" id="image_url" accept="image/*">
+        <input formControlName="in_progress" id="story-state" type="text" placeholder="TRUE or FALSE">
+        <input type="submit" value="Create">
+    </form>
+</article>

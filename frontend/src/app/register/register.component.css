@@ -1,0 +1,49 @@
+.form-container {
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+.form-container h2 {
+    text-align: center;
+    margin: 0;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    margin: 5px 0 ;
+}
+input[type='email'], input[type='password'], input[type='text'] {
+    padding: 10px 10px;
+}
+input[type='submit'] {
+    width: 100px;
+    padding: 10px;
+    align-self: center;
+    margin: 10px;
+    background-color: #7a7aff;
+    border: none;
+    color: #f2f2f2;
+    border-radius: 3px;
+    font-family: "Merriweather", serif;
+    font-size: 1em;
+}
+.links p {
+    text-align: center;
+}
+.links p a {
+    text-decoration: underline;
+    color: #7a7aff;
+    cursor: pointer;
+}
+.btn_close {
+    border: none;
+    background-color: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    outline: none;
+}

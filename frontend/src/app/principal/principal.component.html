@@ -1,0 +1,53 @@
+<main>
+    <section class="main-section">
+        <div class="story-title">
+            @if(storyData){
+            <h2>Story: {{storyData.name}}</h2>
+            <textarea class="story" readonly>{{storyData.content}}</textarea>
+            }
+        </div>
+        <div class="story-container">
+            @if(storyState || isAdmin && userIsLogged){
+            <div class="add-text-container">
+                <h2>Add your part</h2>
+                <div class="text-container">
+                    <form [formGroup]="newContentForm" (submit)="updateStory()" class="colab-text-form">
+                        <textarea formControlName="newContent" class="colab-text" name="colab-text"
+                            id="text" maxlength="200"></textarea>
+                        <div class="counter">
+                            <p>Characteres limit: 200</p>
+                            <p>Characteres now: {{count}}</p>
+                        </div>
+                        <div class="formbuttons">
+                            <input type="button" value="Delete" (click)="eraseInfo()">
+                            <input type="submit" value="Send">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            }
+        </div>
+        <div>
+            <h3>Story configuration</h3>
+            <p>State: {{storyStateName}}</p>
+            @if(userIsLogged){
+            <div class="story-info">
+                <p>Role: {{userRole}}</p>
+                @if(isAdmin){
+                <button class="btn" (click)="updateStoryState()">
+                    @if(storyState){
+                    Close Story
+                    }@else {
+                    Open Story
+                    }
+                </button>
+                <button class="btn dtl" (click)="deleteStory()">Delete</button>
+                }
+            </div>
+            }@else {
+            <p>Role: You need to log in</p>
+            }
+
+        </div>
+    </section>
+</main>

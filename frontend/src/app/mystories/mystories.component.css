@@ -1,0 +1,74 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 180px;
+    padding: 10px;
+    margin: 10px 20px 10px 0px;
+    display: grid;
+    grid-template-columns: 1fr;
+    box-shadow: 0px 0px 1px black;
+    background-color: #ffffff;
+}
+
+.icon {
+    position: relative;
+    height: 250px;
+}
+
+.icon img {
+    width: 100%;
+    border: 1px solid black;
+    object-fit: cover;
+
+}
+.story-btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3px;
+}
+
+.continue-btn, .dlt-btn{
+    cursor: pointer;
+    font-family: "Outfit", serif;
+    border: none;
+    background-color: #6c8aff;
+    border-radius: 5px;
+    color: #efefef;
+    padding: 10px;
+    font-size: 0.8em;
+}
+.dlt-btn {
+    background-color: #ff5757;
+}
+
+.title {
+    padding: 5px 0;
+    margin: 0;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text h3 {
+    order: 1;
+}
+
+.text p {
+    order: 2;
+    flex-grow: 1;
+}
+
+.text .story-btns {
+    justify-content: baseline;
+    order: 3;
+}
+.nostory {
+    margin: 20px 0;
+}

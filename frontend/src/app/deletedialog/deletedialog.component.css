@@ -1,0 +1,21 @@
+article {
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    padding: 8px 18px;
+    border: none;
+    color: #ffffff;
+    font-family: "Source Sans 3", serif;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 3px
+}
+
+.confirm {
+    background-color: #3e8b56;
+}
+.cancel {
+    background-color: #ff4b4b;
+}

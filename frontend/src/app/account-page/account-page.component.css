@@ -1,0 +1,127 @@
+.account-page {
+    display: grid;
+    width: 90%;
+    font-size: 1.2em;
+    margin: 0 auto;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 40% 1fr;
+}
+
+hr {
+    transform: rotate(180deg);
+    width: 100%;
+    height: 0px;
+    border: none;
+    border: 1px solid black;
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+.user-data {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-data button {
+    padding: 8px 18px;
+    border: none;
+    color: #ffffff;
+    background-color: #7665ef;
+    font-family: "Source Sans 3", serif;
+    border-radius: 40px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.user-data h3::first-letter {
+    text-transform: uppercase;
+}
+
+.account-menu {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.account-menu h3::first-letter {
+    text-transform: uppercase;
+}
+
+.account-menu h3 {
+    margin: 0;
+}
+
+.account-menu p {
+    margin: 0;
+    padding: 0;
+}
+
+.icon {
+    margin: 15px 0px;
+}
+
+.icon .img {
+    background-color: #6000fa55;
+    display: flex;
+    margin: 0;
+    width: 100px;
+    padding: 22px 9px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    z-index: 1;
+    box-shadow: 0px 0px 3px #c297ff;
+    cursor: pointer;
+}
+
+.account-menu-list a {
+    text-decoration: none;
+}
+
+.account-menu-list ul {
+    margin: 20px 0;
+    padding: 0;
+}
+
+.account-menu-list li {
+    list-style: none;
+}
+
+.menu-list-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-list-item.selected {
+    color: #c297ff;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .account-page {
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .account-menu {
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+    .account-menu-list a {
+        text-decoration: underline;
+    }
+    .account-menu-list a svg {
+        display: none;
+    }
+
+    .menu-list-item {
+        align-items: center;
+        justify-content: center;
+    }
+}

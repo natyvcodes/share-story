@@ -1,0 +1,18 @@
+<main>
+    <div class="home-header">
+        <h2>Stories available</h2>
+        <button (click)="showStoryForm()">Create your story</button>
+    </div>
+    <div>
+        <div class="card-story-container">
+            <div class="your-stories">
+                @if (userIsLogged) {
+                <h3>Your stories</h3>
+                <app-mystories></app-mystories>
+                }
+                <h3>Stories to contribuite</h3>
+                <app-story></app-story>
+            </div>
+        </div>
+    </div>
+</main>
