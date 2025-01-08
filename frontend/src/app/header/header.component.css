@@ -104,27 +104,32 @@ nav ul {
 .responsive-menu {
     display: none;
 }
+
 .btn {
     user-select: none;
 }
+
 @media (max-width: 600px) {
+
+    .h-container {
+        width: 90%;
+    }
+
     .nav-bar {
         position: absolute;
-        right: 0;
-        top: 0px;
         bottom: 0;
         z-index: 10;
+        right: 100%;
         width: 100%;
         height: 100%;
         background-color: #b3b3fff5;
-        opacity: 0;
         transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         transform: translateX(100%);
     }
 
     .show-menu {
         display: block;
-        opacity: 1; 
+        opacity: 1;
         transform: translateX(0);
     }
 
@@ -152,7 +157,7 @@ nav ul {
     .btn-home,
     .btn-login,
     .btn-logout,
-    .btn-signin{
+    .btn-signin {
         padding: 0;
         width: 100px;
         text-align: center;
