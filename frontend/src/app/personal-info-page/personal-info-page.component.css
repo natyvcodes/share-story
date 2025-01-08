@@ -1,0 +1,13 @@
+h4 {
+    font-size: 1.2em;
+}
+.info-container button {
+    padding: 8px 18px;
+    border: none;
+    color: #ffffff;
+    background-color: #ef6565;
+    font-family: "Source Sans 3", serif;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}

@@ -1,0 +1,56 @@
+<header>
+    <div class="h-container">
+        <h1 routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <a>ShareStory</a>
+        </h1>
+        <nav class="nav-bar" [class.show-menu]='menu'>
+            <ul class="menu">
+                <button class="close-menu" (click)="showMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+                        <path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="2"
+                            d="M20 20L4 4m16 0L4 20" />
+                    </svg>
+                </button>
+                <a class="btn-home btn" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="showMenu()">
+                    <li>Home</li>
+                </a>
+
+                <div class="button-log-state">
+                    @if(userIsLogged){
+                    <a class="account-btn btn" routerLink="/YourAccount" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="showMenu()">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <path fill="#2b01ff"
+                                    d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"
+                                    class="duoicon-primary-layer" />
+                                <path fill="#2b01ff"
+                                    d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2"
+                                    class="duoicon-secondary-layer" opacity=".3" />
+                            </svg>
+                        </li>
+
+                    </a>
+                    <a class="btn-logout btn" (click)="logOut()" (click)="showMenu()">
+                        <li>Log out</li>
+                    </a>
+                    }@else {
+                    <a class="btn-login btn" (click)="logIn()" (click)="showMenu()">
+                        <li>Login</li>
+                    </a>
+                    <a class="btn-signin btn" (click)="register()" (click)="showMenu()">
+                        <li>Sign in</li>
+                    </a>
+                    }
+                </div>
+            </ul>
+        </nav>
+        <div class="responsive-menu">
+            <a class="toggle-menu-btn" (click)="showMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                    <path fill="#ffffff"
+                        d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h11q.425 0 .713.288T16 17t-.288.713T15 18zm14.9-1.7l-3.6-3.6q-.3-.3-.3-.7t.3-.7l3.6-3.6q.275-.275.7-.275t.7.275t.275.7t-.275.7L17.4 12l2.9 2.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275M4 13q-.425 0-.712-.288T3 12t.288-.712T4 11h8q.425 0 .713.288T13 12t-.288.713T12 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h11q.425 0 .713.288T16 7t-.288.713T15 8z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</header>
