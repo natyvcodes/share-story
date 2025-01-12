@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap, combineLatest } from 'rxjs';
+import { catchError, of } from 'rxjs';
 
 export interface Story {
   id: number;
@@ -37,8 +38,12 @@ export class ApiService {
   storyAdmin = new BehaviorSubject<boolean>(false);
   storyAdmin$ = this.storyAdmin.asObservable();
 
+  stories = new BehaviorSubject<Story[]>([]);
+  stories$ = this.stories.asObservable();
+
   constructor(private http: HttpClient) {
     this.userIsLogged()
+    this.getStories()
   }
   updateStoryState(id: number, in_progress: boolean) {
     return this.http.post<{ state: boolean }>(`${this.apiUrl}/updateStoryState`, { id, in_progress }).pipe(
@@ -48,7 +53,20 @@ export class ApiService {
     )
   }
   deleteStory(id: number) {
-    return this.http.post<{ message: 'Story deleted' }>(`${this.apiUrl}/deleteStory`, { id })
+    return this.http.post<{ message: 'Story deleted' }>(`${this.apiUrl}/deleteStory`, { id }).pipe(
+      tap(() => {
+        const updatedStories = this.stories.value.filter(story => story.id !== id);
+        this.stories.next(updatedStories);
+      })
+    );
+  }
+  getStories() {
+    return this.http.get<Story[]>(`${this.apiUrl}/getStories`).pipe(
+      tap(response => {
+        console.log('Historias recibidas:', response);
+        this.stories.next(response)
+      })
+    );
   }
   updateStory(id: number, newContent: string) {
     return this.http.post<{ message: string }>(`${this.apiUrl}/updateStory`, { id, newContent });
@@ -56,9 +74,7 @@ export class ApiService {
   createStory(story: FormData) {
     return this.http.post<{ id: number }>(`${this.apiUrl}/addStory`, story);
   }
-  getStories() {
-    return this.http.get<Story[]>(`${this.apiUrl}/getStories`);
-  }
+
   getStoryById(id: number) {
     return this.http.post<Story>(`${this.apiUrl}/getStoryById`, { id }).pipe(
       tap(response => {

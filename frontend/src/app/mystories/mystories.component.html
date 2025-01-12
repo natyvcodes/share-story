@@ -8,7 +8,7 @@
                 <div class="text">
                     <h3 class="title">{{t.name}}</h3>
                     <div class="story-btns">
-                        <button class="continue-btn">Continue</button>
+                        <button class="continue-btn" (click)="openStory(t.id)">Continue</button>
                         <button class="dlt-btn" (click)="getStoryId(t.id)">Delete</button>
         
                     </div>

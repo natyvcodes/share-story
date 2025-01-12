@@ -10,13 +10,13 @@
     <h1>Create a story</h1>
     <form [formGroup]="storyForm" (ngSubmit)="submitForm()">
         <input formControlName="admin_id" type="number" id="admin_id" placeholder="ADMIN USER">
-        <label for="name">Story Name</label>
+        <label for="name">Story Name:</label>
         <input formControlName="name" type="text" id="name" placeholder="The cat and the musician" autocomplete="off">
-        <label for="description">Story Description</label>
+        <label for="description">Story Description:</label>
         <textarea formControlName="description" id="description" placeholder="The cat is in the bag"></textarea>
         <label for="content">Story First Paragraph (Optional)</label>
         <textarea formControlName="content" id="content" placeholder="Once upon a time..."></textarea>
-        <label for="image_url">Add an image or generate</label>
+        <label for="image_url">Add an image</label>
         <input  formControlName="image_url" (change)="onFileSelected($event)" type="file" id="image_url" accept="image/*">
         <input formControlName="in_progress" id="story-state" type="text" placeholder="TRUE or FALSE">
         <input type="submit" value="Create">

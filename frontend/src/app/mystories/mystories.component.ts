@@ -47,8 +47,17 @@ export class MystoriesComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.apiService.deleteStory(storyId).subscribe()
-        this.router.navigate(['/Principal'])
+        this.apiService.deleteStory(storyId).subscribe(
+          {
+            next: () => {
+              this.userStory = this.userStory.filter(story => story.id !== storyId);
+            },
+            error: error => {
+              alert('Error al eliminar la historia: ' + error.message);
+            }
+          }
+        )
+
       }
     });
   }
@@ -60,6 +69,17 @@ export class MystoriesComponent {
       },
       error: error => {
         alert('Error al obtener la historia: ' + error.message);
+      }
+    });
+  }
+  openStory(storyId: number) {
+    this.apiService.getStoryById(storyId).subscribe({
+      next: response => {
+        const id = response.id;
+        this.router.navigate(['/Principal', id]);
+      },
+      error: error => {
+        alert('Error al añadir la historia: ' + error.message);
       }
     });
   }

@@ -70,7 +70,16 @@
     justify-content: baseline;
     order: 3;
 }
-
+.text {
+    overflow: hidden;
+}
+.text p{
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+    height: 95px;
+    overflow: hidden;
+}
 .custom-image {
     width: 100px;
     height: 200px;
