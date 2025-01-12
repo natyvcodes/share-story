@@ -3,10 +3,10 @@ form span a {
     padding: 5px 2px;
 }
 h1 {
-    font-family: "Merriweather", serif;
+    font-family: "Source Sans 3", serif;
 }
 .form-container {
-    font-family: "Merriweather", serif;
+    font-family: "Source Sans 3", serif;
     background-color: #ffffff;
     border-radius: 15px;
     padding: 30px;
@@ -54,7 +54,7 @@ input[type="submit"] {
     width: 120px;
     border: none;
     background-color: #a8febc;
-    font-family: "Merriweather", serif;
+    font-family: "Source Sans 3", serif;
     border-radius: 10px;
     font-size: 1em;
     margin: 10px 0;
@@ -64,6 +64,8 @@ input[type="submit"] {
 textarea {
     height: 100px;
     resize: none;
+    font-family: "Source Sans 3", serif;
+    padding: 16px 0 0 16px;
 }
 #admin_id {
     display: none;
