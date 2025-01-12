@@ -21,10 +21,26 @@ interface Story {
 export class StoryComponent implements OnInit {
   story!: Story[]
   storyId!: number;
-  constructor(private apiService: ApiService, private router:Router){}
+  userIsLogged: boolean = false;
+  userId: number | null = null;
+  constructor(private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
-    this.loadStories();
+    this.apiService.userIsLogIn$.subscribe((login: boolean) => {
+      this.userIsLogged = login
+      if(!this.userIsLogged){
+        this.loadStories()
+      }
+    })
+    this.apiService.userId$.subscribe((userId: number) => {
+      this.userId = userId;
+    })
+    this.apiService.stories$.subscribe(stories => {
+      if (this.userIsLogged) {
+        this.story = stories.filter(story => story.admin_id !== this.userId);
+      }
+    })
   }
+
   loadStories(): void {
     this.apiService.getStories().subscribe({
       next: (stories) => {
@@ -35,7 +51,7 @@ export class StoryComponent implements OnInit {
       }
     });
   }
-  editStory(storyId: number){
+  editStory(storyId: number) {
     this.apiService.getStoryById(storyId).subscribe({
       next: response => {
         const id = response.id;

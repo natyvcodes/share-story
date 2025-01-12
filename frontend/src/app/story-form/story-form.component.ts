@@ -57,7 +57,9 @@ export class StoryFormComponent {
     formData.append('admin_id', this.storyForm.get('admin_id')?.value);
     formData.append('in_progress', this.storyForm.get('in_progress')?.value);
     formData.append('image_url', this.storyForm.get('image_url')?.value);
-    console.log(this.storyForm.value)
+    if (!this.storyForm.get('content')?.value) {
+      this.storyForm.get('content')?.setValue('-')
+    }
     if (this.storyForm.valid) {
       this.apiService.createStory(formData).subscribe({
         next: response => {
