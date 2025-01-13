@@ -1,0 +1,36 @@
+functionsDirectory = "C:\\Users\\natyl\\Projects\\Angular\\share-story-project\\frontend\\netlify\\functions"
+functionsDirectoryOrigin = "ui"
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[[plugins]]
+origin = "default"
+package = "@netlify/angular-runtime"
+
+[plugins.inputs]
+
+[build]
+publish = "C:\\Users\\natyl\\Projects\\Angular\\share-story-project\\frontend\\dist\\share-story\\browser"
+publishOrigin = "ui"
+commandOrigin = "ui"
+base = "C:\\Users\\natyl\\Projects\\Angular\\share-story-project\\frontend"
+command = "npm run build"
+functions = "C:\\Users\\natyl\\Projects\\Angular\\share-story-project\\frontend\\netlify\\functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
