@@ -1,11 +1,9 @@
 <div class="cards-container">
-    @for (t of story; track t.id) {
+    @for (t of story; track t.id;  let idx = $index) {
     <div class="card">
-        <div class="icon">
-            <img ngSrc="{{t.image_url}}" alt="{{'Image of the story' + t.name}}" fill priority  class="custom-image">
-        </div>
         <div class="text">
             <h3 class="title">{{t.name}}</h3>
+            <h4>Author: <span>{{storyOwner[idx]}}</span> </h4>
             <p>{{t.description}}</p>
             <div class="story-btns">
                 <button class="join-btn" (click)="editStory(t.id)">Join</button>

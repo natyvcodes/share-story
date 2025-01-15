@@ -14,7 +14,7 @@ interface user {
 @Component({
   selector: 'app-mystories',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [],
   templateUrl: './mystories.component.html',
   styleUrl: './mystories.component.css'
 })

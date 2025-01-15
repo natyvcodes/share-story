@@ -12,7 +12,6 @@ interface Story {
   content: string;
   admin_id: number;
   in_progress: boolean;
-  image_url: string;
 }
 
 @Component({
@@ -38,8 +37,7 @@ export class StoryFormComponent {
       description: ['', Validators.required],
       content: ['', Validators.required],
       admin_id: ['', Validators.required],
-      in_progress: ['', Validators.required],
-      image_url: ['', Validators.required]
+      in_progress: ['', Validators.required]
     });
   }
 
@@ -50,23 +48,20 @@ export class StoryFormComponent {
     })
     this.storyForm.get('admin_id')?.setValue(this.userId)
 
-    const formData = new FormData();
-    formData.append('name', this.storyForm.get('name')?.value);
-    formData.append('description', this.storyForm.get('description')?.value);
-    formData.append('content', this.storyForm.get('content')?.value);
-    formData.append('admin_id', this.storyForm.get('admin_id')?.value);
-    formData.append('in_progress', this.storyForm.get('in_progress')?.value);
-    formData.append('image_url', this.storyForm.get('image_url')?.value);
-    if (!this.storyForm.get('content')?.value) {
-      this.storyForm.get('content')?.setValue('-')
-    }
+    const storyData = {
+      name: this.storyForm.get('name')?.value,
+      description: this.storyForm.get('description')?.value,
+      content: this.storyForm.get('content')?.value || '-', // Valor por defecto
+      admin_id: this.storyForm.get('admin_id')?.value,
+      in_progress: this.storyForm.get('in_progress')?.value
+    };
+    
     if (this.storyForm.valid) {
-      this.apiService.createStory(formData).subscribe({
+      this.apiService.createStory(storyData).subscribe({
         next: response => {
           this.storyForm.reset();
           this.dialogRef.close(response);
           const id = response.id;
-          console.log('Navigating to:', `/Principal/${id}`);
           this.router.navigate(['/Principal', id]);
         },
         error: error => {

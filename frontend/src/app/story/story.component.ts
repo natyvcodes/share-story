@@ -14,20 +14,22 @@ interface Story {
 @Component({
   selector: 'app-story',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [],
   templateUrl: './story.component.html',
   styleUrl: './story.component.css'
 })
 export class StoryComponent implements OnInit {
-  story!: Story[]
+  story!: Story[];
+  storyOwner: string[] = []
   storyId!: number;
   userIsLogged: boolean = false;
+  userAdmin: number = 0;
   userId: number | null = null;
   constructor(private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
     this.apiService.userIsLogIn$.subscribe((login: boolean) => {
       this.userIsLogged = login
-      if(!this.userIsLogged){
+      if (!this.userIsLogged) {
         this.loadStories()
       }
     })
@@ -38,9 +40,16 @@ export class StoryComponent implements OnInit {
       if (this.userIsLogged) {
         this.story = stories.filter(story => story.admin_id !== this.userId);
       }
+      const adminsId = stories.map(story => story.admin_id);
+      for (let i = 0; i < adminsId.length; i++) {
+        this.apiService.getUserById(adminsId[i]).subscribe(response => {
+          this.storyOwner[i] = response.name
+        })
+      }
     })
+  
+    
   }
-
   loadStories(): void {
     this.apiService.getStories().subscribe({
       next: (stories) => {

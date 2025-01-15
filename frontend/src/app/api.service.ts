@@ -21,7 +21,7 @@ interface user {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://backend-nu-flame-78.vercel.app';
 
   userIsLogIn = new BehaviorSubject<boolean>(false);
   userIsLogIn$ = this.userIsLogIn.asObservable();
@@ -63,7 +63,7 @@ export class ApiService {
   getStories() {
     return this.http.get<Story[]>(`${this.apiUrl}/getStories`).pipe(
       tap(response => {
-        console.log('Historias recibidas:', response);
+      
         this.stories.next(response)
       })
     );
@@ -71,7 +71,7 @@ export class ApiService {
   updateStory(id: number, newContent: string) {
     return this.http.post<{ message: string }>(`${this.apiUrl}/updateStory`, { id, newContent });
   }
-  createStory(story: FormData) {
+  createStory(story: any) {
     return this.http.post<{ id: number }>(`${this.apiUrl}/addStory`, story);
   }
 
@@ -84,6 +84,9 @@ export class ApiService {
       }
       )
     )
+  }
+  getUserById(id: number) {
+    return this.http.post<user>(`${this.apiUrl}/getUserById`, { id })
   }
   LogUser(email: string, password: string) {
     return this.http.post<{ message: string; token: string, name: string, id: string, email: string }>(`${this.apiUrl}/Login`, {
@@ -116,7 +119,8 @@ export class ApiService {
   logOut() {
     localStorage.removeItem('userToken');
     localStorage.removeItem('userName');
-    localStorage.removeItem('userId')
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userData');
     this.userIsLogIn.next(false);
   }
   private saveToken(token: string, name: string, id: string) {
@@ -125,9 +129,15 @@ export class ApiService {
     localStorage.setItem('userId', id)
   }
   userRegister(name: string, email: string, password: string) {
-    return this.http.post<{ token: string, name: string, id: string }>(`${this.apiUrl}/userRegister`, { name, email, password }).pipe(
+    return this.http.post<{ token: string, name: string, id: string, email:string }>(`${this.apiUrl}/userRegister`, { name, email, password }).pipe(
       tap(response => {
         this.saveToken(response.token, response.name, response.id)
+        const user: user = {
+          id: Number(response.id),
+          name: response.name,
+          email: response.email
+        }
+        localStorage.setItem('userData', JSON.stringify(user))
         this.userIsLogIn.next(true)
       })
     )
