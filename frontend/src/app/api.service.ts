@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap, combineLatest } from 'rxjs';
 import { catchError, of } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface Story {
   id: number;
@@ -21,7 +22,7 @@ interface user {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'https://backend-nu-flame-78.vercel.app';
+  private apiUrl = environment.url;
 
   userIsLogIn = new BehaviorSubject<boolean>(false);
   userIsLogIn$ = this.userIsLogIn.asObservable();
