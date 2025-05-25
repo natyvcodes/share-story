@@ -108,7 +108,6 @@ export class PrincipalComponent implements OnInit {
     })
     this.apiService.storyState$.subscribe(in_process => {
       this.storyState = in_process;
-      console.log('State: ' + this.storyState)
       if (this.storyState) {
         this.storyStateName = 'IN PROCESS'
       } else {

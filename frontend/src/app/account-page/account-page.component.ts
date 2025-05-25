@@ -28,7 +28,6 @@ export class AccountPageComponent {
       .subscribe((event: NavigationEnd) => {
         this.currentRoute = event.urlAfterRedirects
         this.updateSelectedLink()
-        console.log(this.currentRoute)
       })
     this.currentRoute = this.router.url;
     this.updateSelectedLink();

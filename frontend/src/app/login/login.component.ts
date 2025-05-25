@@ -30,7 +30,6 @@ export class LoginComponent {
       const password: string = this.loginForm.get('password')?.value;
       this.apiService.LogUser(email, password).subscribe({
         next: (response) => {
-          console.log('Login successful, token:', response.token);
           this.dialogRef.close()
         },
         error: (err) => {

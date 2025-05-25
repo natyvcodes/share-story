@@ -1,5 +1,2 @@
-# Local Netlify folder
-.netlify
-node_modules
 backend/.env
-backend/src/queries.js
+**/node_modules

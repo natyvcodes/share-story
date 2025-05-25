@@ -2,15 +2,15 @@
     @if(userStory.length != 0){
         @for (t of userStory; track t.id) {
             <div class="card">
-                <div class="icon">
+                <!-- <div class="icon">
                     <img ngSrc="{{t.image_url}}" alt="{{'Image of the story' + t.name}}" fill priority  class="custom-image">
-                </div>
+                </div> -->
                 <div class="text">
                     <h3 class="title">{{t.name}}</h3>
+                    <p>{{t.description}}</p>
                     <div class="story-btns">
                         <button class="continue-btn" (click)="openStory(t.id)">Continue</button>
                         <button class="dlt-btn" (click)="getStoryId(t.id)">Delete</button>
-        
                     </div>
                 </div>
             </div>
